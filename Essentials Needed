@@ -1,0 +1,57 @@
+package exam;
+
+import java.text.*;
+
+public class java-programming {
+
+	
+	public static void main(String[] args) 
+	{
+		//HOW TO WRITE A CONSTANT -----
+		final String FULLNAME ="saivion";
+		
+		//CAST TYPE ----- 
+		int i;
+		double j;
+		
+		j = 99.2;
+		i = (int)j;
+		System.out.println("value of i" + i);
+
+		// a = a + b
+		int a = 9, b = 4;
+		b += a; // b = b + a
+		System.out.println("b += a is "+ b);		
+		
+		
+		//MOD FUNCTION -----
+		int x = 9;
+		System.out.println("4 mod x is: " + 4%x);
+		
+		
+		x = 8/5 + x%3 - 6/8;
+		System.out.println("x is:  " + x);
+		
+		x=5;
+		System.out.println("1. " + x++);
+		System.out.println("2. " + x++);
+		System.out.println("3. " + ++x);
+		
+		//CONDITIONAL EXPRESSION -----
+		int w, e, max;
+		w = 99;
+		e = 45;
+		
+		// w is true block, e is false block
+		max = (w>e)? w : e;
+		
+		
+		//DECIMAL FORMAT -----
+		DecimalFormat q = new DecimalFormat("0.00");
+		double z = 99.221;
+		System.out.println("z before format" + z);
+		System.out.println("z after format" +q.format(z));
+	
+	}
+
+}
