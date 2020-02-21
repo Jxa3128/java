@@ -1,0 +1,51 @@
+package practice1;
+
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.text.DecimalFormat;
+import java.util.Scanner;
+import java.io.*; 
+import javax.swing.JOptionPane;
+
+public class homework2 {
+		public static void main(String[] args) 
+			throws IOException {
+			// TODO Auto-generated method stub
+			Scanner sc = new Scanner(System.in);
+			FileWriter output = new FileWriter("out.txt");
+			BufferedWriter out = new BufferedWriter(output);
+			
+			
+			String doubleString = JOptionPane.showInputDialog(null, "Enter Loan Amount: ", "Window Panel: Input (double)", JOptionPane.QUESTION_MESSAGE);
+			double loanAmount = Double.parseDouble(doubleString); 
+			
+			String intString = JOptionPane.showInputDialog(null, "Enter Number of Years: ", "Window Panel: Input (int)", JOptionPane.QUESTION_MESSAGE);
+			int years = Integer.parseInt(intString); 
+			
+			String doubleString2 = JOptionPane.showInputDialog(null, "Enter Interest Rate (7.00): ", "Window Panel: Input (double)", JOptionPane.QUESTION_MESSAGE);
+			double interestRate = Double.parseDouble(doubleString2); 
+			
+
+			double monthlyRate = interestRate / 1200;
+			double monthlyPayment = loanAmount * monthlyRate / (1 - 1 / Math.pow(1 + monthlyRate, years * 12));		
+			DecimalFormat df = new DecimalFormat("0.00");
+			out.write("-- Saivion Hayes -- \n\n");
+			out.write("MP: " + df.format(monthlyPayment));
+			
+			double balance = loanAmount, principal, interest;
+			
+			out.newLine();
+			out.write("Payments Interest Principal Balance");
+			for (int i = 1; i <= years * 12; i++) {
+				interest = monthlyRate * balance;
+				principal = monthlyPayment - interest;
+				balance =  balance - principal;
+				
+			
+			out.write("\n" + i + "\t     " +df.format(interest) + "\t   " + df.format(principal) + "\t " + df.format(balance) + "\n");
+				}
+		sc.close();
+		out.close();
+		}
+	}
