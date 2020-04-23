@@ -1,0 +1,126 @@
+package standarddev;
+
+import java.io.BufferedWriter; 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.*;
+import java.io.*; 
+
+public class standarddevHW {
+	public static int avg(int numbers[]) {
+		int total = 0;
+
+        for(int i=0; i < numbers.length; i++){
+        	total = total + numbers[i];
+        }
+        return total;
+	}
+	
+	
+	public static int calcSD(int numbers[])
+    {
+        int sum = 0;
+        int standardDeviation = 0;
+        int ans;
+        int length = numbers.length;
+
+        for(int num : numbers) {
+            sum += num;
+        }
+
+        int mean = sum/length;
+
+        for(int num: numbers) {
+            standardDeviation += Math.pow(num - mean, 2);
+        }
+        int sqrt = (int) Math.sqrt(standardDeviation/length);
+        return sqrt;
+    }
+
+	public static int max(int[] numbers) { 
+	    int maxValue = numbers[0]; 
+	    for(int i = 1;i < numbers.length;i++){ 
+	      if(numbers[i] > maxValue){ 
+	         maxValue = numbers[i]; 
+	      } 
+	    } 
+	    return maxValue; 
+	  }
+	
+	public static double calcMean(int[] numbers)
+	{
+		int sum = 0;
+		
+		// Sum all values in our array
+		for (int i=0; i<numbers.length; i++)
+		{
+			sum = sum + numbers[i];
+		}
+				
+		// Calculate mean
+		double mean = ((double) sum) / ((double) numbers.length);
+		
+		return mean;
+	}
+	
+	public static double sqrt(int[] numbers) {
+		double result = 0;
+		
+		for (int i = 0; i< numbers.length; i++) {
+		result = Math.sqrt(numbers[i]);
+		}
+		return result;
+	}
+	
+	public static void main(String[] args) throws IOException {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+		
+		//CREATES THE INPUT FILE
+		File input = new File("in.txt"); 
+		Scanner infile = new Scanner(input);
+		//CREATES THE OUTPUT FILE
+		FileWriter output = new FileWriter("out.txt");
+		BufferedWriter outfile = new BufferedWriter(output);
+		
+		int numbers[] = new int[10];
+		int i;
+		
+		//LOOPS THROUGH THE ARRAY AND STORES INPUT IN THE ARRAY FROM THE INPUT FILE 
+		for(i = 0; i <= 9; i++) { 
+		numbers[i] = infile.nextInt();
+		outfile.write(numbers[i] +  "\n");
+		}
+		
+		//SQUARE ROOT OF ARRAY 
+		double result1;
+		result1 = sqrt(numbers);
+		outfile.write("\nThe Square Root is " + result1);
+
+		
+		//FIND THE MAX VALUE WITHIN THE ARRAY
+		int ans;
+		ans = max(numbers);
+		outfile.write("\nMax Value: " + ans);
+		
+		
+		//AVERAGE
+		int average;
+		average = avg(numbers);
+		outfile.write("\nAverage: " + average);
+
+		//STANDARD DEVIATION
+		double sd;
+		sd = calcSD(numbers);
+		outfile.write("\nStandard Deviation is: " + sd);
+		
+		//MEAN
+		double mean1;
+		mean1 = calcMean(numbers);
+		outfile.write("\nThe mean is: " + mean1);
+
+		infile.close();
+		outfile.close();
+		
+	}
+}
