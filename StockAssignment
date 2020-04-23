@@ -1,0 +1,90 @@
+package stockHW;
+
+import java.util.*;
+import java.io.*;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+
+
+public class stocks {
+
+	public static void main(String[] args) throws IOException {
+		// TODO Auto-generated method stub
+		
+		//Input File
+		File input = new File("in.txt");
+		Scanner infile = new Scanner(input);
+		//Output File
+		FileWriter output = new FileWriter("out.txt");
+		BufferedWriter outfile = new BufferedWriter(output);
+		
+		Stock ob1 = new Stock("SUNW", "Sun Microsystems Inc.");
+		ob1.setpreviousClosingPrice(100);
+		ob1.setcurrentPrice(65);
+ 		//Setting the current price
+		
+		outfile.write("Previous Closing Price: " + ob1.getpreviousClosingPrice() + "\n");
+		outfile.write("Current Price: " + ob1.getcurrentPrice() + "\n");
+		outfile.write("Price after changes: " + ob1.changePercent(20) * 100 + "%");
+		
+		infile.close();
+		outfile.close();	
+	}
+	
+	public static class Stock {
+		String symbol;
+		String name;
+		double currentPrice;
+		double previousClosingPrice; 
+		//Start of Constructors
+		Stock() {
+			
+		}
+		//Start of initialize Constructor
+		Stock(String newSymbol, String newName) {
+			symbol = newSymbol;
+			name = newName;
+		}
+		
+		String getSymbol() {
+			return symbol;
+		}
+		
+		String getName() {
+			return name;
+		}
+		
+		double getpreviousClosingPrice() {
+			return previousClosingPrice; 
+		}
+		
+		double getcurrentPrice() {
+			return currentPrice;
+		}
+		
+		void setName(String name) {
+			String newName;  
+			newName = name;
+		}
+		
+		void setpreviousClosingPrice(double newPrevClosingPrice) {
+			previousClosingPrice = newPrevClosingPrice;
+		}
+		
+		void setcurrentPrice(double newCurrentPrice) {
+			currentPrice = newCurrentPrice;
+		}
+		
+		double changePercent(double change) {
+			double newPrice,  prevPrice;
+			
+			newPrice = currentPrice; 
+			prevPrice = previousClosingPrice;
+			
+			change = (((newPrice - prevPrice)/prevPrice) * 100);
+			return change;
+		}
+	}
+}
+
